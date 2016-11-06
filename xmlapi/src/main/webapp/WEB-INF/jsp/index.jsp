@@ -23,37 +23,38 @@
     <input type="submit" value="getAllFirstLastNames"/>
 </form>
 <form action="/selectAllFilteredByPhone.xml">
-    Phone Number: <input type="text" name="phoneNumber">
     <input type="submit" value="selectAllFilteredByPhone"/>
+    Phone Number: <input type="text" name="phoneNumber">
 </form>
 <form action="/selectAllFilteredByFirstName.xml">
-    First Name: <input type="text" name="firstName">
     <input type="submit" value="selectAllFilteredByFirstName"/>
+    First Name: <input type="text" name="firstName">
 </form>
 <form action="/selectAllFilteredByLastName.xml">
-    Last Name: <input type="text" name="lastName">
     <input type="submit" value="selectAllFilteredByLastName"/>
+    Last Name: <input type="text" name="lastName">
 </form>
 <form action="/selectAllDataLimited.xml">
+    <input type="submit" value="selectAllDataLimited"/>
     Limit: <input type="text" name="limit">
     Offset: <input type="text" name="offset">
-    <input type="submit" value="selectAllDataLimited"/>
 </form>
 <form action="/selectAllFilteredByPhoneLimited.xml">
+    <input type="submit" value="selectAllFilteredByPhoneLimited"/>
     Phone: <input type="text" name="phone">
     Limit: <input type="text" name="limit">
     Offset: <input type="text" name="offset">
-    <input type="submit" value="selectAllFilteredByPhoneLimited"/>
 </form>
 <form action="/selectAllFilteredByFirstAndLastName.xml">
+    <input type="submit" value="selectAllFilteredByFirstAndLastName"/>
     First Name: <input type="text" name="firstName">
     Last Name: <input type="text" name="lastName">
-    <input type="submit" value="selectAllFilteredByFirstAndLastName"/>
+
 </form>
 <form action="/selectAllIdFirstLastNameLimited.xml">
+    <input type="submit" value="selectAllIdFirstLastNameLimited"/>
     Limit: <input type="text" name="limit">
     Offset: <input type="text" name="offset">
-    <input type="submit" value="selectAllIdFirstLastNameLimited"/>
 </form>
 </body>
 </html>
