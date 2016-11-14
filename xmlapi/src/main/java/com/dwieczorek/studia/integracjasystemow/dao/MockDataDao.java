@@ -17,14 +17,9 @@ import java.util.List;
  */
 @Component
 public class MockDataDao {
-    private DataSource dataSource;
 
     @Autowired
-    public void setDataSource(org.apache.tomcat.jdbc.pool.DataSource dataSource) {
-        dataSource.setInitialSize(3);
-        dataSource.setMaxActive(3);
-        this.dataSource = dataSource;
-    }
+    private DataSource dataSource;
 
     public List<MockData> getAllData() {
         Connection conn = null;
