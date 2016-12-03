@@ -1,57 +1,50 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:include page="webjars/bootstrap/3.3.6/css/bootstrap.css"/>
 <html>
 <head>
     <title>Title</title>
-    <jsp:include page="utils.jsp"/>
-    <script>
-        function getAllXmlDownload() {
-            $(location).attr('href', 'http://stackoverflow.com')
-        }
-    </script>
 </head>
 <body>
-<form action="/selectAllData.xml">
+<form action="/selectAllData">
     <input type="submit" value="getAllXml"/>
 </form>
-<form action="/selectAllIdFirstLastNames.xml">
+<form action="/selectAllIdFirstLastNames">
     <input type="submit" value="getAllIdFirstLastNames"/>
 </form>
-<form action="/selectAllFirstLastNames.xml">
+<form action="/selectAllFirstLastNames">
     <input type="submit" value="getAllFirstLastNames"/>
 </form>
-<form action="/selectAllFilteredByPhone.xml">
+<form action="/selectAllFilteredByPhone">
     <input type="submit" value="selectAllFilteredByPhone"/>
     Phone Number: <input type="text" name="phoneNumber">
 </form>
-<form action="/selectAllFilteredByFirstName.xml">
+<form action="/selectAllFilteredByFirstName">
     <input type="submit" value="selectAllFilteredByFirstName"/>
     First Name: <input type="text" name="firstName">
 </form>
-<form action="/selectAllFilteredByLastName.xml">
+<form action="/selectAllFilteredByLastName">
     <input type="submit" value="selectAllFilteredByLastName"/>
     Last Name: <input type="text" name="lastName">
 </form>
-<form action="/selectAllDataLimited.xml">
+<form action="/selectAllDataLimited">
     <input type="submit" value="selectAllDataLimited"/>
     Limit: <input type="text" name="limit">
     Offset: <input type="text" name="offset">
 </form>
-<form action="/selectAllFilteredByPhoneLimited.xml">
+<form action="/selectAllFilteredByPhoneLimited">
     <input type="submit" value="selectAllFilteredByPhoneLimited"/>
     Phone: <input type="text" name="phone">
     Limit: <input type="text" name="limit">
     Offset: <input type="text" name="offset">
 </form>
-<form action="/selectAllFilteredByFirstAndLastName.xml">
+<form action="/selectAllFilteredByFirstAndLastName">
     <input type="submit" value="selectAllFilteredByFirstAndLastName"/>
     First Name: <input type="text" name="firstName">
     Last Name: <input type="text" name="lastName">
 
 </form>
-<form action="/selectAllIdFirstLastNameLimited.xml">
+<form action="/selectAllIdFirstLastNameLimited">
     <input type="submit" value="selectAllIdFirstLastNameLimited"/>
     Limit: <input type="text" name="limit">
     Offset: <input type="text" name="offset">

@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.xml.bind.JAXBException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -27,7 +25,7 @@ public class XmlController {
     private MockDataDao mockDataDao;
 
     @RateLimit(limit = 3, duration = 60, unit = TimeUnit.SECONDS)
-    @RequestMapping(path = "/selectAllData.xml", method = RequestMethod.GET)
+    @RequestMapping(path = "/selectAllData", method = RequestMethod.GET)
     public
     @ResponseBody
     XmlList<MockData> getAll(HttpServletRequest request) throws SQLException {
@@ -37,7 +35,7 @@ public class XmlController {
     }
 
     @RateLimit(limit = 3, duration = 60, unit = TimeUnit.SECONDS)
-    @RequestMapping(path = "/selectAllIdFirstLastNames.xml", method = RequestMethod.GET)
+    @RequestMapping(path = "/selectAllIdFirstLastNames", method = RequestMethod.GET)
     public
     @ResponseBody
     XmlList<MockData> getAllIdFirstLastNames(HttpServletRequest request) throws SQLException {
@@ -47,7 +45,7 @@ public class XmlController {
     }
 
     @RateLimit(limit = 3, duration = 60, unit = TimeUnit.SECONDS)
-    @RequestMapping(path = "/selectAllFirstLastNames.xml", method = RequestMethod.GET)
+    @RequestMapping(path = "/selectAllFirstLastNames", method = RequestMethod.GET)
     public
     @ResponseBody
     XmlList<MockData> getAllFirstLastNames(HttpServletRequest request) throws SQLException {
@@ -57,7 +55,7 @@ public class XmlController {
     }
 
     @RateLimit(limit = 3, duration = 60, unit = TimeUnit.SECONDS)
-    @RequestMapping(path = "/selectAllFilteredByPhone.xml", method = RequestMethod.GET)
+    @RequestMapping(path = "/selectAllFilteredByPhone", method = RequestMethod.GET)
     public
     @ResponseBody
     XmlList<MockData> selectAllFilteredByPhone(@RequestParam String phoneNumber, HttpServletRequest request) throws SQLException {
@@ -67,7 +65,7 @@ public class XmlController {
     }
 
     @RateLimit(limit = 3, duration = 60, unit = TimeUnit.SECONDS)
-    @RequestMapping(path = "/selectAllFilteredByFirstName.xml", method = RequestMethod.GET)
+    @RequestMapping(path = "/selectAllFilteredByFirstName", method = RequestMethod.GET)
     public
     @ResponseBody
     XmlList<MockData> selectAllFilteredByFirstName(@RequestParam String firstName, HttpServletRequest request) throws SQLException {
@@ -77,7 +75,7 @@ public class XmlController {
     }
 
     @RateLimit(limit = 3, duration = 60, unit = TimeUnit.SECONDS)
-    @RequestMapping(path = "/selectAllDataLimited.xml", method = RequestMethod.GET)
+    @RequestMapping(path = "/selectAllDataLimited", method = RequestMethod.GET)
     public
     @ResponseBody
     XmlList<MockData> selectAllDataLimited(@RequestParam Integer limit,
@@ -88,7 +86,7 @@ public class XmlController {
     }
 
     @RateLimit(limit = 3, duration = 60, unit = TimeUnit.SECONDS)
-    @RequestMapping(path = "/selectAllFilteredByLastName.xml", method = RequestMethod.GET)
+    @RequestMapping(path = "/selectAllFilteredByLastName", method = RequestMethod.GET)
     public
     @ResponseBody
     XmlList<MockData> selectAllFilteredByLastName(@RequestParam String lastName, HttpServletRequest request) throws SQLException {
@@ -98,7 +96,7 @@ public class XmlController {
     }
 
     @RateLimit(limit = 3, duration = 60, unit = TimeUnit.SECONDS)
-    @RequestMapping(path = "/selectAllFilteredByFirstAndLastName.xml", method = RequestMethod.GET)
+    @RequestMapping(path = "/selectAllFilteredByFirstAndLastName", method = RequestMethod.GET)
     public
     @ResponseBody
     XmlList<MockData> selectAllFilteredByFirstAndLastName(@RequestParam String firstName,
@@ -110,7 +108,7 @@ public class XmlController {
     }
 
     @RateLimit(limit = 3, duration = 60, unit = TimeUnit.SECONDS)
-    @RequestMapping(path = "/selectAllFilteredByPhoneLimited.xml", method = RequestMethod.GET)
+    @RequestMapping(path = "/selectAllFilteredByPhoneLimited", method = RequestMethod.GET)
     public
     @ResponseBody
     XmlList<MockData> selectAllFilteredByPhoneLimited(@RequestParam String phone,
@@ -123,7 +121,7 @@ public class XmlController {
     }
 
     @RateLimit(limit = 3, duration = 60, unit = TimeUnit.SECONDS)
-    @RequestMapping(path = "/selectAllIdFirstLastNameLimited.xml", method = RequestMethod.GET)
+    @RequestMapping(path = "/selectAllIdFirstLastNameLimited", method = RequestMethod.GET)
     public
     @ResponseBody
     XmlList<MockData> selectAllIdFirstLastNameLimited(@RequestParam Integer limit,
@@ -135,12 +133,12 @@ public class XmlController {
     }
 
     @RequestMapping(path = "/index", method = RequestMethod.GET)
-    public String index() throws JAXBException {
+    public String index() {
         return "index";
     }
 
     @RequestMapping(path = "/index", method = RequestMethod.POST)
-    public String getFile(ModelMap modelMap) throws JAXBException {
+    public String getFile(ModelMap modelMap) {
         return "index";
     }
 }
