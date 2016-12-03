@@ -4,8 +4,19 @@
 <html>
 <head>
     <title>Title</title>
+    <script src="webjars/jquery/3.1.1/dist/jquery.min.js"></script>
 </head>
 <body>
+<script>
+    $(document).ready(function () {
+        $('.type-radio').click(function () {
+            var type = $('input[class=type-radio]:checked').val();
+            $.ajax({
+                    url : "${pageContext.request.contextPath}/setType?type="+type
+            });
+        })
+    })
+</script>
 <form action="/selectAllData">
     <input type="submit" value="getAllXml"/>
 </form>
@@ -49,5 +60,11 @@
     Limit: <input type="text" name="limit">
     Offset: <input type="text" name="offset">
 </form>
+<div>
+    XML:<input type="radio" name="type" checked value="XML" id="XML" class="type-radio"/>
+    JSON:<input type="radio" name="type" value="JSON" class="type-radio"/>
+    YAML:<input type="radio" name="type" value="YAML" class="type-radio"/>
+    OGDL:<input type="radio" name="type" value="OGDL" class="type-radio"/>
+</div>
 </body>
 </html>
