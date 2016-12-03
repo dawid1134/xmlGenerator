@@ -1,7 +1,7 @@
 package com.dwieczorek.studia.integracjasystemow.converter.parser;
 
 import com.dwieczorek.studia.integracjasystemow.converter.ApiParser;
-import com.dwieczorek.studia.integracjasystemow.dao.dto.MockData;
+import com.dwieczorek.studia.integracjasystemow.dao.dto.CustomerData;
 import com.dwieczorek.studia.integracjasystemow.utils.XmlList;
 
 import java.beans.IntrospectionException;
@@ -19,7 +19,7 @@ public class OgdlApiParser<T> implements ApiParser<T>{
     @Override
     public String parse(T objectToParse) {
         if(objectToParse instanceof XmlList){
-            XmlList<MockData> objectToParse1 = (XmlList<MockData>) objectToParse;
+            XmlList<CustomerData> objectToParse1 = (XmlList<CustomerData>) objectToParse;
             return parseCollection(objectToParse1.getItems());
         }
         else {

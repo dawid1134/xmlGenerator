@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * Created by dawid on 29.10.2016.
  */
 @XmlRootElement(name = "mock_data")
-public class MockData {
+public class CustomerData {
     private String id;
     private String firstName;
     private String lastName;

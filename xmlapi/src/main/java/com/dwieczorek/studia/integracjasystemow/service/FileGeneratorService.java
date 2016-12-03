@@ -4,7 +4,7 @@ import com.dwieczorek.studia.integracjasystemow.converter.ServerSupportedType;
 import com.dwieczorek.studia.integracjasystemow.converter.parser.OgdlApiParser;
 import com.dwieczorek.studia.integracjasystemow.converter.parser.XmlApiParser;
 import com.dwieczorek.studia.integracjasystemow.converter.parser.YamlApiParser;
-import com.dwieczorek.studia.integracjasystemow.dao.dto.MockData;
+import com.dwieczorek.studia.integracjasystemow.dao.dto.CustomerData;
 import com.dwieczorek.studia.integracjasystemow.converter.ApiParser;
 import com.dwieczorek.studia.integracjasystemow.converter.parser.JsonApiParser;
 import com.dwieczorek.studia.integracjasystemow.utils.XmlList;
@@ -22,16 +22,16 @@ public class FileGeneratorService {
     private static final Integer DEFAULT_BUFFER_SIZE = 1024;
     public static final String SESSION_TYPE = "TYPE";
 
-    public void prepareResponse(HttpServletRequest request, HttpServletResponse response, XmlList<MockData> xmlList) {
+    public void prepareResponse(HttpServletRequest request, HttpServletResponse response, XmlList<CustomerData> xmlList) {
         ServerSupportedType type = (ServerSupportedType)request.getSession().getAttribute(SESSION_TYPE);
         if (type == null)
             type = ServerSupportedType.XML;
-        ApiParser<XmlList<MockData>> apiParser = createProperParser(type);
+        ApiParser<XmlList<CustomerData>> apiParser = createProperParser(type);
         generateResponseWithFile(request, response, apiParser, xmlList);
     }
 
     private void generateResponseWithFile(HttpServletRequest request, HttpServletResponse response,
-                                          ApiParser<XmlList<MockData>> apiParser, XmlList<MockData> xmlList) {
+                                          ApiParser<XmlList<CustomerData>> apiParser, XmlList<CustomerData> xmlList) {
         response.reset();
         response.setBufferSize(DEFAULT_BUFFER_SIZE);
         setProperMetadata(request, response, apiParser);
@@ -43,8 +43,8 @@ public class FileGeneratorService {
         }
     }
 
-    private ApiParser<XmlList<MockData>> createProperParser(ServerSupportedType type) {
-        ApiParser<XmlList<MockData>> apiParser;
+    private ApiParser<XmlList<CustomerData>> createProperParser(ServerSupportedType type) {
+        ApiParser<XmlList<CustomerData>> apiParser;
         switch (type){
             case JSON:
                 apiParser = new JsonApiParser<>();
@@ -65,7 +65,7 @@ public class FileGeneratorService {
     }
 
     private void setProperMetadata(HttpServletRequest request, HttpServletResponse response,
-                                   ApiParser<XmlList<MockData>> apiParser) {
+                                   ApiParser<XmlList<CustomerData>> apiParser) {
         response.setContentType(apiParser.getContentType());
         response.addHeader("Content-Disposition", "attachment; filename="+ request.getServletPath()
                 .substring(1,request.getServletPath().length())

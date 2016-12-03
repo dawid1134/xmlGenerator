@@ -3,7 +3,7 @@ package com.dwieczorek.studia.integracjasystemow;
 import com.dwieczorek.studia.integracjasystemow.annotation.RateLimit;
 import com.dwieczorek.studia.integracjasystemow.converter.ServerSupportedType;
 import com.dwieczorek.studia.integracjasystemow.dao.MockDataDao;
-import com.dwieczorek.studia.integracjasystemow.dao.dto.MockData;
+import com.dwieczorek.studia.integracjasystemow.dao.dto.CustomerData;
 import com.dwieczorek.studia.integracjasystemow.service.FileGeneratorService;
 import com.dwieczorek.studia.integracjasystemow.utils.XmlList;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +36,8 @@ public class XmlController {
     public
     @ResponseBody
     void getAll(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-        List<MockData> sampleData = mockDataDao.getAllData();
-        XmlList<MockData> xmlList = new XmlList<>(sampleData);
+        List<CustomerData> sampleData = mockDataDao.getAllData();
+        XmlList<CustomerData> xmlList = new XmlList<>(sampleData);
         fileGeneratorService.prepareResponse(request, response, xmlList);
     }
 
@@ -46,8 +46,8 @@ public class XmlController {
     public
     @ResponseBody
     void getAllIdFirstLastNames(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-        List<MockData> sampleData = mockDataDao.selectAllIdFirstLastName();
-        XmlList<MockData> xmlList = new XmlList<>(sampleData);
+        List<CustomerData> sampleData = mockDataDao.selectAllIdFirstLastName();
+        XmlList<CustomerData> xmlList = new XmlList<>(sampleData);
         fileGeneratorService.prepareResponse(request, response, xmlList);
     }
 
@@ -56,8 +56,8 @@ public class XmlController {
     public
     @ResponseBody
     void getAllFirstLastNames(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-        List<MockData> sampleData = mockDataDao.selectFirstLastNames();
-        XmlList<MockData> xmlList = new XmlList<>(sampleData);
+        List<CustomerData> sampleData = mockDataDao.selectFirstLastNames();
+        XmlList<CustomerData> xmlList = new XmlList<>(sampleData);
         fileGeneratorService.prepareResponse(request, response, xmlList);
     }
 
@@ -67,8 +67,8 @@ public class XmlController {
     @ResponseBody
     void selectAllFilteredByPhone(@RequestParam String phoneNumber, HttpServletRequest request,
                                   HttpServletResponse response) throws SQLException {
-        List<MockData> sampleData = mockDataDao.selectAllFilteredByPhone(phoneNumber);
-        XmlList<MockData> xmlList = new XmlList<>(sampleData);
+        List<CustomerData> sampleData = mockDataDao.selectAllFilteredByPhone(phoneNumber);
+        XmlList<CustomerData> xmlList = new XmlList<>(sampleData);
         fileGeneratorService.prepareResponse(request, response, xmlList);
     }
 
@@ -78,8 +78,8 @@ public class XmlController {
     @ResponseBody
     void selectAllFilteredByFirstName(@RequestParam String firstName, HttpServletRequest request,
                                                    HttpServletResponse response) throws SQLException {
-        List<MockData> sampleData = mockDataDao.selectAllFilteredByFirstName(firstName);
-        XmlList<MockData> xmlList = new XmlList<>(sampleData);
+        List<CustomerData> sampleData = mockDataDao.selectAllFilteredByFirstName(firstName);
+        XmlList<CustomerData> xmlList = new XmlList<>(sampleData);
         fileGeneratorService.prepareResponse(request, response, xmlList);
     }
 
@@ -90,8 +90,8 @@ public class XmlController {
     void selectAllDataLimited(@RequestParam Integer limit,
                                            @RequestParam Integer offset, HttpServletRequest request,
                               HttpServletResponse response) throws SQLException {
-        List<MockData> sampleData = mockDataDao.selectAllDataLimited(limit, offset);
-        XmlList<MockData> xmlList = new XmlList<>(sampleData);
+        List<CustomerData> sampleData = mockDataDao.selectAllDataLimited(limit, offset);
+        XmlList<CustomerData> xmlList = new XmlList<>(sampleData);
         fileGeneratorService.prepareResponse(request, response, xmlList);
     }
 
@@ -101,8 +101,8 @@ public class XmlController {
     @ResponseBody
     void selectAllFilteredByLastName(@RequestParam String lastName, HttpServletRequest request,
                                      HttpServletResponse response) throws SQLException {
-        List<MockData> sampleData = mockDataDao.selectAllFilteredByLastName(lastName);
-        XmlList<MockData> xmlList = new XmlList<>(sampleData);
+        List<CustomerData> sampleData = mockDataDao.selectAllFilteredByLastName(lastName);
+        XmlList<CustomerData> xmlList = new XmlList<>(sampleData);
         fileGeneratorService.prepareResponse(request, response, xmlList);
     }
 
@@ -114,8 +114,8 @@ public class XmlController {
                                                           @RequestParam String lastName,
                                                           HttpServletRequest request,
                                              HttpServletResponse response) throws SQLException {
-        List<MockData> sampleData = mockDataDao.selectAllFilteredByFirstAndLastName(firstName, lastName);
-        XmlList<MockData> xmlList = new XmlList<>(sampleData);
+        List<CustomerData> sampleData = mockDataDao.selectAllFilteredByFirstAndLastName(firstName, lastName);
+        XmlList<CustomerData> xmlList = new XmlList<>(sampleData);
         fileGeneratorService.prepareResponse(request, response, xmlList);
     }
 
@@ -128,8 +128,8 @@ public class XmlController {
                                                       @RequestParam Integer offset,
                                                       HttpServletRequest request,
                                                       HttpServletResponse response) throws SQLException {
-        List<MockData> sampleData = mockDataDao.selectAllFilteredByPhoneLimited(phone, limit, offset);
-        XmlList<MockData> xmlList = new XmlList<>(sampleData);
+        List<CustomerData> sampleData = mockDataDao.selectAllFilteredByPhoneLimited(phone, limit, offset);
+        XmlList<CustomerData> xmlList = new XmlList<>(sampleData);
         fileGeneratorService.prepareResponse(request, response, xmlList);
     }
 
@@ -141,8 +141,8 @@ public class XmlController {
                                                       @RequestParam Integer offset,
                                                       HttpServletRequest request,
                                                       HttpServletResponse response) throws SQLException {
-        List<MockData> sampleData = mockDataDao.selectAllIdFirstLastNameLimited(limit, offset);
-        XmlList<MockData> xmlList = new XmlList<>(sampleData);
+        List<CustomerData> sampleData = mockDataDao.selectAllIdFirstLastNameLimited(limit, offset);
+        XmlList<CustomerData> xmlList = new XmlList<>(sampleData);
         fileGeneratorService.prepareResponse(request, response, xmlList);
     }
 

@@ -1,6 +1,6 @@
 package com.dwieczorek.studia.integracjasystemow;
 
-import com.dwieczorek.studia.integracjasystemow.dao.dto.MockData;
+import com.dwieczorek.studia.integracjasystemow.dao.dto.CustomerData;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 
@@ -15,7 +15,7 @@ import javax.xml.bind.Marshaller;
 public class Configuration {
     @Bean
     public Marshaller createMarshaller() throws JAXBException {
-        JAXBContext jc = JAXBContext.newInstance(MockData.class);
+        JAXBContext jc = JAXBContext.newInstance(CustomerData.class);
         return jc.createMarshaller();
     }
 
