@@ -21,11 +21,12 @@ public class MockDataDao {
     @Autowired
     private DataSource dataSource;
 
-    public List<CustomerData> getAllData() {
+    public List<CustomerData> getAllData() throws SQLException {
         Connection conn = null;
+        CallableStatement callableStatement = null;
         try {
             conn = dataSource.getConnection();
-            CallableStatement callableStatement = conn.prepareCall("call select_all_data");
+            callableStatement = conn.prepareCall("call select_all_data");
             ResultSet resultSet = callableStatement.executeQuery();
             List<CustomerData> customerDatas = new ArrayList<>();
             while (resultSet.next()) {
@@ -37,22 +38,22 @@ public class MockDataDao {
             e.printStackTrace();
             return new ArrayList<>();
         } finally {
+            if (callableStatement != null) {
+                callableStatement.close();
+            }
             if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
         }
 
     }
 
-    public List<CustomerData> selectAllIdFirstLastName() {
+    public List<CustomerData> selectAllIdFirstLastName() throws SQLException {
         Connection conn = null;
+        CallableStatement callableStatement = null;
         try {
             conn = dataSource.getConnection();
-            CallableStatement callableStatement = conn.prepareCall("call select_all_id_first_last_name");
+            callableStatement = conn.prepareCall("call select_all_id_first_last_name");
             ResultSet resultSet = callableStatement.executeQuery();
             List<CustomerData> customerDatas = new ArrayList<>();
             while (resultSet.next()) {
@@ -67,22 +68,22 @@ public class MockDataDao {
             e.printStackTrace();
             return new ArrayList<>();
         } finally {
+            if (callableStatement != null) {
+                callableStatement.close();
+            }
             if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
         }
 
     }
 
-    public List<CustomerData> selectFirstLastNames() {
+    public List<CustomerData> selectFirstLastNames() throws SQLException {
         Connection conn = null;
+        CallableStatement callableStatement = null;
         try {
             conn = dataSource.getConnection();
-            CallableStatement callableStatement = conn.prepareCall("call select_first_last_names");
+            callableStatement = conn.prepareCall("call select_first_last_names");
             ResultSet resultSet = callableStatement.executeQuery();
             List<CustomerData> customerDatas = new ArrayList<>();
             while (resultSet.next()) {
@@ -96,22 +97,22 @@ public class MockDataDao {
             e.printStackTrace();
             return new ArrayList<>();
         } finally {
+            if (callableStatement != null) {
+                callableStatement.close();
+            }
             if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
         }
 
     }
 
-    public List<CustomerData> selectAllFilteredByPhone(String phoneNumber) {
+    public List<CustomerData> selectAllFilteredByPhone(String phoneNumber) throws SQLException {
         Connection conn = null;
+        CallableStatement callableStatement = null;
         try {
             conn = dataSource.getConnection();
-            CallableStatement callableStatement = conn.prepareCall("call select_all_filter_phone(?)");
+            callableStatement = conn.prepareCall("call select_all_filter_phone(?)");
             callableStatement.setString(1, phoneNumber);
             ResultSet resultSet = callableStatement.executeQuery();
             List<CustomerData> customerDatas = new ArrayList<>();
@@ -124,22 +125,22 @@ public class MockDataDao {
             e.printStackTrace();
             return new ArrayList<>();
         } finally {
+            if (callableStatement != null) {
+                callableStatement.close();
+            }
             if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
         }
 
     }
 
-    public List<CustomerData> selectAllFilteredByLastName(String lastName) {
+    public List<CustomerData> selectAllFilteredByLastName(String lastName) throws SQLException {
         Connection conn = null;
+        CallableStatement callableStatement = null;
         try {
             conn = dataSource.getConnection();
-            CallableStatement callableStatement = conn.prepareCall("call select_all_filter_last_name(?)");
+            callableStatement = conn.prepareCall("call select_all_filter_last_name(?)");
             callableStatement.setString(1, lastName);
             ResultSet resultSet = callableStatement.executeQuery();
             List<CustomerData> customerDatas = new ArrayList<>();
@@ -152,22 +153,22 @@ public class MockDataDao {
             e.printStackTrace();
             return new ArrayList<>();
         } finally {
+            if (callableStatement != null) {
+                callableStatement.close();
+            }
             if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
         }
 
     }
 
-    public List<CustomerData> selectAllFilteredByFirstName(String firstName) {
+    public List<CustomerData> selectAllFilteredByFirstName(String firstName) throws SQLException {
         Connection conn = null;
+        CallableStatement callableStatement = null;
         try {
             conn = dataSource.getConnection();
-            CallableStatement callableStatement = conn.prepareCall("call select_all_filter_first_name(?)");
+            callableStatement = conn.prepareCall("call select_all_filter_first_name(?)");
             callableStatement.setString(1, firstName);
             ResultSet resultSet = callableStatement.executeQuery();
             List<CustomerData> customerDatas = new ArrayList<>();
@@ -180,22 +181,22 @@ public class MockDataDao {
             e.printStackTrace();
             return new ArrayList<>();
         } finally {
+            if (callableStatement != null) {
+                callableStatement.close();
+            }
             if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
         }
 
     }
 
-    public List<CustomerData> selectAllDataLimited(Integer limit, Integer offset) {
+    public List<CustomerData> selectAllDataLimited(Integer limit, Integer offset) throws SQLException {
         Connection conn = null;
+        CallableStatement callableStatement = null;
         try {
             conn = dataSource.getConnection();
-            CallableStatement callableStatement = conn.prepareCall("call select_all_data_limited(?,?)");
+            callableStatement = conn.prepareCall("call select_all_data_limited(?,?)");
             callableStatement.setInt(1, limit);
             callableStatement.setInt(2, offset);
             ResultSet resultSet = callableStatement.executeQuery();
@@ -209,22 +210,22 @@ public class MockDataDao {
             e.printStackTrace();
             return new ArrayList<>();
         } finally {
+            if (callableStatement != null) {
+                callableStatement.close();
+            }
             if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
         }
 
     }
 
-    public List<CustomerData> selectAllFilteredByFirstAndLastName(String firstName, String lastName) {
+    public List<CustomerData> selectAllFilteredByFirstAndLastName(String firstName, String lastName) throws SQLException {
         Connection conn = null;
+        CallableStatement callableStatement = null;
         try {
             conn = dataSource.getConnection();
-            CallableStatement callableStatement = conn.prepareCall("call select_all_filter_first_last_name(?,?)");
+            callableStatement = conn.prepareCall("call select_all_filter_first_last_name(?,?)");
             callableStatement.setString(1, firstName);
             callableStatement.setString(2, lastName);
             ResultSet resultSet = callableStatement.executeQuery();
@@ -238,22 +239,22 @@ public class MockDataDao {
             e.printStackTrace();
             return new ArrayList<>();
         } finally {
+            if (callableStatement != null) {
+                callableStatement.close();
+            }
             if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
         }
 
     }
 
-    public List<CustomerData> selectAllFilteredByPhoneLimited(String phone, Integer limit, Integer offset) {
+    public List<CustomerData> selectAllFilteredByPhoneLimited(String phone, Integer limit, Integer offset) throws SQLException {
         Connection conn = null;
+        CallableStatement callableStatement = null;
         try {
             conn = dataSource.getConnection();
-            CallableStatement callableStatement = conn.prepareCall("call select_all_filter_phone_limited(?,?,?)");
+            callableStatement = conn.prepareCall("call select_all_filter_phone_limited(?,?,?)");
             callableStatement.setString(1, phone);
             callableStatement.setInt(2, limit);
             callableStatement.setInt(3, offset);
@@ -268,22 +269,22 @@ public class MockDataDao {
             e.printStackTrace();
             return new ArrayList<>();
         } finally {
+            if (callableStatement != null) {
+                callableStatement.close();
+            }
             if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
         }
 
     }
 
-    public List<CustomerData> selectAllIdFirstLastNameLimited(Integer limit, Integer offset) {
+    public List<CustomerData> selectAllIdFirstLastNameLimited(Integer limit, Integer offset) throws SQLException {
         Connection conn = null;
+        CallableStatement callableStatement = null;
         try {
             conn = dataSource.getConnection();
-            CallableStatement callableStatement = conn.prepareCall("call select_all_id_first_last_name_limited(?,?)");
+            callableStatement = conn.prepareCall("call select_all_id_first_last_name_limited(?,?)");
             callableStatement.setInt(1, limit);
             callableStatement.setInt(2, offset);
             ResultSet resultSet = callableStatement.executeQuery();
@@ -300,12 +301,11 @@ public class MockDataDao {
             e.printStackTrace();
             return new ArrayList<>();
         } finally {
+            if (callableStatement != null) {
+                callableStatement.close();
+            }
             if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                conn.close();
             }
         }
 

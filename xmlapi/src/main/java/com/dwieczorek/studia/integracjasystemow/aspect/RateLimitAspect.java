@@ -42,7 +42,7 @@ public class RateLimitAspect {
         logger.debug("rateLimitProcess()");
         HttpServletRequest request = getRequest(joinPoint.getArgs());
         if (request == null) {
-            logger.error(String.format("HttpServletRequest error",
+            logger.error(String.format("HttpServletRequest error %s",
                     joinPoint.getSignature().toShortString()));
             return;
         }
@@ -55,7 +55,7 @@ public class RateLimitAspect {
             redisTemplate.expire(key, rateLimit.duration(), rateLimit.unit());
         }
         if (count > rateLimit.limit()) {
-            logger.warn(String.format("Block user data: ",
+            logger.warn(String.format("Block user data: %s %d %s %d",
                     ip, count, url, rateLimit.limit()));
             throw new RateLimitException();
         }
