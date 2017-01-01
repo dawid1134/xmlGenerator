@@ -33,9 +33,8 @@ public class XmlController {
 
     @RateLimit(limit = 3, duration = 60, unit = TimeUnit.SECONDS)
     @RequestMapping(path = "/selectAllData", method = RequestMethod.GET)
-    public
     @ResponseBody
-    void getAll(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+    public void getAll(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         List<CustomerData> sampleData = mockDataDao.getAllData();
         XmlList<CustomerData> xmlList = new XmlList<>(sampleData);
         fileGeneratorService.prepareResponse(request, response, xmlList);
@@ -43,9 +42,8 @@ public class XmlController {
 
     @RateLimit(limit = 3, duration = 60, unit = TimeUnit.SECONDS)
     @RequestMapping(path = "/selectAllIdFirstLastNames", method = RequestMethod.GET)
-    public
     @ResponseBody
-    void getAllIdFirstLastNames(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+    public void getAllIdFirstLastNames(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         List<CustomerData> sampleData = mockDataDao.selectAllIdFirstLastName();
         XmlList<CustomerData> xmlList = new XmlList<>(sampleData);
         fileGeneratorService.prepareResponse(request, response, xmlList);
@@ -53,9 +51,8 @@ public class XmlController {
 
     @RateLimit(limit = 3, duration = 60, unit = TimeUnit.SECONDS)
     @RequestMapping(path = "/selectAllFirstLastNames", method = RequestMethod.GET)
-    public
     @ResponseBody
-    void getAllFirstLastNames(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+    public void getAllFirstLastNames(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         List<CustomerData> sampleData = mockDataDao.selectFirstLastNames();
         XmlList<CustomerData> xmlList = new XmlList<>(sampleData);
         fileGeneratorService.prepareResponse(request, response, xmlList);
@@ -63,10 +60,9 @@ public class XmlController {
 
     @RateLimit(limit = 3, duration = 60, unit = TimeUnit.SECONDS)
     @RequestMapping(path = "/selectAllFilteredByPhone", method = RequestMethod.GET)
-    public
     @ResponseBody
-    void selectAllFilteredByPhone(@RequestParam String phoneNumber, HttpServletRequest request,
-                                  HttpServletResponse response) throws SQLException {
+    public void selectAllFilteredByPhone(@RequestParam String phoneNumber, HttpServletRequest request,
+                                         HttpServletResponse response) throws SQLException {
         List<CustomerData> sampleData = mockDataDao.selectAllFilteredByPhone(phoneNumber);
         XmlList<CustomerData> xmlList = new XmlList<>(sampleData);
         fileGeneratorService.prepareResponse(request, response, xmlList);
@@ -74,10 +70,9 @@ public class XmlController {
 
     @RateLimit(limit = 3, duration = 60, unit = TimeUnit.SECONDS)
     @RequestMapping(path = "/selectAllFilteredByFirstName", method = RequestMethod.GET)
-    public
     @ResponseBody
-    void selectAllFilteredByFirstName(@RequestParam String firstName, HttpServletRequest request,
-                                                   HttpServletResponse response) throws SQLException {
+    public void selectAllFilteredByFirstName(@RequestParam String firstName, HttpServletRequest request,
+                                             HttpServletResponse response) throws SQLException {
         List<CustomerData> sampleData = mockDataDao.selectAllFilteredByFirstName(firstName);
         XmlList<CustomerData> xmlList = new XmlList<>(sampleData);
         fileGeneratorService.prepareResponse(request, response, xmlList);
@@ -85,11 +80,10 @@ public class XmlController {
 
     @RateLimit(limit = 3, duration = 60, unit = TimeUnit.SECONDS)
     @RequestMapping(path = "/selectAllDataLimited", method = RequestMethod.GET)
-    public
     @ResponseBody
-    void selectAllDataLimited(@RequestParam Integer limit,
-                                           @RequestParam Integer offset, HttpServletRequest request,
-                              HttpServletResponse response) throws SQLException {
+    public void selectAllDataLimited(@RequestParam Integer limit,
+                                     @RequestParam Integer offset, HttpServletRequest request,
+                                     HttpServletResponse response) throws SQLException {
         List<CustomerData> sampleData = mockDataDao.selectAllDataLimited(limit, offset);
         XmlList<CustomerData> xmlList = new XmlList<>(sampleData);
         fileGeneratorService.prepareResponse(request, response, xmlList);
@@ -97,10 +91,9 @@ public class XmlController {
 
     @RateLimit(limit = 3, duration = 60, unit = TimeUnit.SECONDS)
     @RequestMapping(path = "/selectAllFilteredByLastName", method = RequestMethod.GET)
-    public
     @ResponseBody
-    void selectAllFilteredByLastName(@RequestParam String lastName, HttpServletRequest request,
-                                     HttpServletResponse response) throws SQLException {
+    public void selectAllFilteredByLastName(@RequestParam String lastName, HttpServletRequest request,
+                                            HttpServletResponse response) throws SQLException {
         List<CustomerData> sampleData = mockDataDao.selectAllFilteredByLastName(lastName);
         XmlList<CustomerData> xmlList = new XmlList<>(sampleData);
         fileGeneratorService.prepareResponse(request, response, xmlList);
@@ -108,12 +101,11 @@ public class XmlController {
 
     @RateLimit(limit = 3, duration = 60, unit = TimeUnit.SECONDS)
     @RequestMapping(path = "/selectAllFilteredByFirstAndLastName", method = RequestMethod.GET)
-    public
     @ResponseBody
-    void selectAllFilteredByFirstAndLastName(@RequestParam String firstName,
-                                                          @RequestParam String lastName,
-                                                          HttpServletRequest request,
-                                             HttpServletResponse response) throws SQLException {
+    public void selectAllFilteredByFirstAndLastName(@RequestParam String firstName,
+                                                    @RequestParam String lastName,
+                                                    HttpServletRequest request,
+                                                    HttpServletResponse response) throws SQLException {
         List<CustomerData> sampleData = mockDataDao.selectAllFilteredByFirstAndLastName(firstName, lastName);
         XmlList<CustomerData> xmlList = new XmlList<>(sampleData);
         fileGeneratorService.prepareResponse(request, response, xmlList);
@@ -121,13 +113,12 @@ public class XmlController {
 
     @RateLimit(limit = 3, duration = 60, unit = TimeUnit.SECONDS)
     @RequestMapping(path = "/selectAllFilteredByPhoneLimited", method = RequestMethod.GET)
-    public
     @ResponseBody
-    void selectAllFilteredByPhoneLimited(@RequestParam String phone,
-                                                      @RequestParam Integer limit,
-                                                      @RequestParam Integer offset,
-                                                      HttpServletRequest request,
-                                                      HttpServletResponse response) throws SQLException {
+    public void selectAllFilteredByPhoneLimited(@RequestParam String phone,
+                                                @RequestParam Integer limit,
+                                                @RequestParam Integer offset,
+                                                HttpServletRequest request,
+                                                HttpServletResponse response) throws SQLException {
         List<CustomerData> sampleData = mockDataDao.selectAllFilteredByPhoneLimited(phone, limit, offset);
         XmlList<CustomerData> xmlList = new XmlList<>(sampleData);
         fileGeneratorService.prepareResponse(request, response, xmlList);
@@ -135,12 +126,11 @@ public class XmlController {
 
     @RateLimit(limit = 3, duration = 60, unit = TimeUnit.SECONDS)
     @RequestMapping(path = "/selectAllIdFirstLastNameLimited", method = RequestMethod.GET)
-    public
     @ResponseBody
-    void selectAllIdFirstLastNameLimited(@RequestParam Integer limit,
-                                                      @RequestParam Integer offset,
-                                                      HttpServletRequest request,
-                                                      HttpServletResponse response) throws SQLException {
+    public void selectAllIdFirstLastNameLimited(@RequestParam Integer limit,
+                                                @RequestParam Integer offset,
+                                                HttpServletRequest request,
+                                                HttpServletResponse response) throws SQLException {
         List<CustomerData> sampleData = mockDataDao.selectAllIdFirstLastNameLimited(limit, offset);
         XmlList<CustomerData> xmlList = new XmlList<>(sampleData);
         fileGeneratorService.prepareResponse(request, response, xmlList);
