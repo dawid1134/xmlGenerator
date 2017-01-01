@@ -5,6 +5,9 @@ import com.dwieczorek.studia.integracjasystemow.converter.ServerSupportedType;
 import com.dwieczorek.studia.integracjasystemow.converter.parser.XmlApiParser;
 import com.dwieczorek.studia.integracjasystemow.dao.dto.CustomerData;
 import com.dwieczorek.studia.integracjasystemow.utils.XmlList;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +19,19 @@ import javax.servlet.http.HttpServletResponse;
 @Service
 public class CssStyledGeneratorService extends ResponseGeneratorService {
     private static final String XMLLIST = "XML_LIST";
+
+    public HttpEntity<byte[]> getResult(HttpServletRequest request, HttpServletResponse response) {
+        String attribute = (String) request.getSession().getAttribute(XMLLIST);
+        return prepareXmlFile(attribute);
+    }
+
+    private HttpEntity<byte[]> prepareXmlFile(String attribute) {
+        byte[] documentBody = attribute.getBytes();
+        HttpHeaders header = new HttpHeaders();
+        header.setContentType(new MediaType("application", "xml"));
+        header.setContentLength(documentBody.length);
+        return new HttpEntity<>(documentBody, header);
+    }
 
     @Override
     protected void generateResponse(HttpServletRequest request, HttpServletResponse response,
