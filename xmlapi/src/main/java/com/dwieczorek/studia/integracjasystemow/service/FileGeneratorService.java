@@ -1,12 +1,12 @@
 package com.dwieczorek.studia.integracjasystemow.service;
 
+import com.dwieczorek.studia.integracjasystemow.converter.ApiParser;
 import com.dwieczorek.studia.integracjasystemow.converter.ServerSupportedType;
+import com.dwieczorek.studia.integracjasystemow.converter.parser.JsonApiParser;
 import com.dwieczorek.studia.integracjasystemow.converter.parser.OgdlApiParser;
 import com.dwieczorek.studia.integracjasystemow.converter.parser.XmlApiParser;
 import com.dwieczorek.studia.integracjasystemow.converter.parser.YamlApiParser;
 import com.dwieczorek.studia.integracjasystemow.dao.dto.CustomerData;
-import com.dwieczorek.studia.integracjasystemow.converter.ApiParser;
-import com.dwieczorek.studia.integracjasystemow.converter.parser.JsonApiParser;
 import com.dwieczorek.studia.integracjasystemow.utils.XmlList;
 import org.springframework.stereotype.Service;
 
@@ -18,20 +18,12 @@ import java.io.IOException;
  * Created by wiecz on 03.12.2016.
  */
 @Service
-public class FileGeneratorService {
+public class FileGeneratorService extends ResponseGeneratorService {
     private static final Integer DEFAULT_BUFFER_SIZE = 1024;
-    public static final String SESSION_TYPE = "TYPE";
 
-    public void prepareResponse(HttpServletRequest request, HttpServletResponse response, XmlList<CustomerData> xmlList) {
-        ServerSupportedType type = (ServerSupportedType)request.getSession().getAttribute(SESSION_TYPE);
-        if (type == null)
-            type = ServerSupportedType.XML;
-        ApiParser<XmlList<CustomerData>> apiParser = createProperParser(type);
-        generateResponseWithFile(request, response, apiParser, xmlList);
-    }
-
-    private void generateResponseWithFile(HttpServletRequest request, HttpServletResponse response,
-                                          ApiParser<XmlList<CustomerData>> apiParser, XmlList<CustomerData> xmlList) {
+    @Override
+    protected void generateResponse(HttpServletRequest request, HttpServletResponse response,
+                                    ApiParser<XmlList<CustomerData>> apiParser, XmlList<CustomerData> xmlList) {
         response.reset();
         response.setBufferSize(DEFAULT_BUFFER_SIZE);
         setProperMetadata(request, response, apiParser);
@@ -43,7 +35,8 @@ public class FileGeneratorService {
         }
     }
 
-    private ApiParser<XmlList<CustomerData>> createProperParser(ServerSupportedType type) {
+    @Override
+    protected ApiParser<XmlList<CustomerData>> createProperParser(ServerSupportedType type) {
         ApiParser<XmlList<CustomerData>> apiParser;
         switch (type){
             case JSON:
