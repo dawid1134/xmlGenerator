@@ -4,15 +4,19 @@ import com.dwieczorek.studia.integracjasystemow.annotation.RateLimit;
 import com.dwieczorek.studia.integracjasystemow.converter.ServerSupportedType;
 import com.dwieczorek.studia.integracjasystemow.dao.MockDataDao;
 import com.dwieczorek.studia.integracjasystemow.dao.dto.CustomerData;
+import com.dwieczorek.studia.integracjasystemow.service.CssStyledGeneratorService;
 import com.dwieczorek.studia.integracjasystemow.service.FileGeneratorService;
+import com.dwieczorek.studia.integracjasystemow.service.ResponseGeneratorService;
 import com.dwieczorek.studia.integracjasystemow.utils.XmlList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -29,7 +33,14 @@ public class XmlController {
     private MockDataDao mockDataDao;
 
     @Autowired
-    private FileGeneratorService fileGeneratorService;
+    private ApplicationContext context;
+
+    private ResponseGeneratorService responseGeneratorService;
+
+    @PostConstruct
+    public void postConstruct() {
+        responseGeneratorService = context.getBean(CssStyledGeneratorService.class);
+    }
 
     @RateLimit(limit = 3, duration = 60, unit = TimeUnit.SECONDS)
     @RequestMapping(path = "/selectAllData", method = RequestMethod.GET)
@@ -37,7 +48,7 @@ public class XmlController {
     public void getAll(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         List<CustomerData> sampleData = mockDataDao.getAllData();
         XmlList<CustomerData> xmlList = new XmlList<>(sampleData);
-        fileGeneratorService.prepareResponse(request, response, xmlList);
+        responseGeneratorService.prepareResponse(request, response, xmlList);
     }
 
     @RateLimit(limit = 3, duration = 60, unit = TimeUnit.SECONDS)
@@ -46,7 +57,7 @@ public class XmlController {
     public void getAllIdFirstLastNames(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         List<CustomerData> sampleData = mockDataDao.selectAllIdFirstLastName();
         XmlList<CustomerData> xmlList = new XmlList<>(sampleData);
-        fileGeneratorService.prepareResponse(request, response, xmlList);
+        responseGeneratorService.prepareResponse(request, response, xmlList);
     }
 
     @RateLimit(limit = 3, duration = 60, unit = TimeUnit.SECONDS)
@@ -55,7 +66,7 @@ public class XmlController {
     public void getAllFirstLastNames(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         List<CustomerData> sampleData = mockDataDao.selectFirstLastNames();
         XmlList<CustomerData> xmlList = new XmlList<>(sampleData);
-        fileGeneratorService.prepareResponse(request, response, xmlList);
+        responseGeneratorService.prepareResponse(request, response, xmlList);
     }
 
     @RateLimit(limit = 3, duration = 60, unit = TimeUnit.SECONDS)
@@ -65,7 +76,7 @@ public class XmlController {
                                          HttpServletResponse response) throws SQLException {
         List<CustomerData> sampleData = mockDataDao.selectAllFilteredByPhone(phoneNumber);
         XmlList<CustomerData> xmlList = new XmlList<>(sampleData);
-        fileGeneratorService.prepareResponse(request, response, xmlList);
+        responseGeneratorService.prepareResponse(request, response, xmlList);
     }
 
     @RateLimit(limit = 3, duration = 60, unit = TimeUnit.SECONDS)
@@ -75,7 +86,7 @@ public class XmlController {
                                              HttpServletResponse response) throws SQLException {
         List<CustomerData> sampleData = mockDataDao.selectAllFilteredByFirstName(firstName);
         XmlList<CustomerData> xmlList = new XmlList<>(sampleData);
-        fileGeneratorService.prepareResponse(request, response, xmlList);
+        responseGeneratorService.prepareResponse(request, response, xmlList);
     }
 
     @RateLimit(limit = 3, duration = 60, unit = TimeUnit.SECONDS)
@@ -86,7 +97,7 @@ public class XmlController {
                                      HttpServletResponse response) throws SQLException {
         List<CustomerData> sampleData = mockDataDao.selectAllDataLimited(limit, offset);
         XmlList<CustomerData> xmlList = new XmlList<>(sampleData);
-        fileGeneratorService.prepareResponse(request, response, xmlList);
+        responseGeneratorService.prepareResponse(request, response, xmlList);
     }
 
     @RateLimit(limit = 3, duration = 60, unit = TimeUnit.SECONDS)
@@ -96,7 +107,7 @@ public class XmlController {
                                             HttpServletResponse response) throws SQLException {
         List<CustomerData> sampleData = mockDataDao.selectAllFilteredByLastName(lastName);
         XmlList<CustomerData> xmlList = new XmlList<>(sampleData);
-        fileGeneratorService.prepareResponse(request, response, xmlList);
+        responseGeneratorService.prepareResponse(request, response, xmlList);
     }
 
     @RateLimit(limit = 3, duration = 60, unit = TimeUnit.SECONDS)
@@ -108,7 +119,7 @@ public class XmlController {
                                                     HttpServletResponse response) throws SQLException {
         List<CustomerData> sampleData = mockDataDao.selectAllFilteredByFirstAndLastName(firstName, lastName);
         XmlList<CustomerData> xmlList = new XmlList<>(sampleData);
-        fileGeneratorService.prepareResponse(request, response, xmlList);
+        responseGeneratorService.prepareResponse(request, response, xmlList);
     }
 
     @RateLimit(limit = 3, duration = 60, unit = TimeUnit.SECONDS)
@@ -121,7 +132,7 @@ public class XmlController {
                                                 HttpServletResponse response) throws SQLException {
         List<CustomerData> sampleData = mockDataDao.selectAllFilteredByPhoneLimited(phone, limit, offset);
         XmlList<CustomerData> xmlList = new XmlList<>(sampleData);
-        fileGeneratorService.prepareResponse(request, response, xmlList);
+        responseGeneratorService.prepareResponse(request, response, xmlList);
     }
 
     @RateLimit(limit = 3, duration = 60, unit = TimeUnit.SECONDS)
@@ -133,7 +144,7 @@ public class XmlController {
                                                 HttpServletResponse response) throws SQLException {
         List<CustomerData> sampleData = mockDataDao.selectAllIdFirstLastNameLimited(limit, offset);
         XmlList<CustomerData> xmlList = new XmlList<>(sampleData);
-        fileGeneratorService.prepareResponse(request, response, xmlList);
+        responseGeneratorService.prepareResponse(request, response, xmlList);
     }
 
     @RequestMapping(path = "/index", method = RequestMethod.GET)
@@ -150,5 +161,14 @@ public class XmlController {
     public void setType(@RequestParam String type, HttpSession session){
         ServerSupportedType serverSupportedType = ServerSupportedType.valueOf(type);
         session.setAttribute(FileGeneratorService.SESSION_TYPE, serverSupportedType);
+        fillGeneratorService(serverSupportedType);
+    }
+
+    private void fillGeneratorService(ServerSupportedType serverSupportedType) {
+        if (serverSupportedType == ServerSupportedType.XML) {
+            responseGeneratorService = context.getBean(CssStyledGeneratorService.class);
+        } else {
+            responseGeneratorService = context.getBean(FileGeneratorService.class);
+        }
     }
 }

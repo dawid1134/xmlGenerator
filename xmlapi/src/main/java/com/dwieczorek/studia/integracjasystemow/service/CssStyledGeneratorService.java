@@ -15,11 +15,16 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Service
 public class CssStyledGeneratorService extends ResponseGeneratorService {
+    private static final String XMLLIST = "XML_LIST";
 
     @Override
     protected void generateResponse(HttpServletRequest request, HttpServletResponse response,
                                     ApiParser<XmlList<CustomerData>> apiParser, XmlList<CustomerData> xmlList) {
-
+        String result = apiParser.parse(xmlList);
+        response.setContentType("text/plain");
+        request.getSession().setAttribute(XMLLIST, result);
+        response.setStatus(HttpServletResponse.SC_FOUND);
+        response.setHeader("Location", "xmlConfiguration");
     }
 
     @Override
