@@ -51,4 +51,20 @@ public class CssStyledGeneratorService extends ResponseGeneratorService {
         }
         throw new UnsupportedOperationException("CSS Styled generator service support only XML format.");
     }
+
+    public String prepareCss() {
+        return "XmlList {\n" +
+                "    background-color: #ffffff;\n" +
+                "    width: 90%;\n" +
+                "}\n" +
+                "items > items {\n" +
+                "    display: block;\n" +
+                "    /* margin-bottom: 30pt; */\n" +
+                "    margin-left: 0;\n" +
+                "    border: blue;\n" +
+                "    border-style: solid;\n" +
+                "    padding: 10px;\n" +
+                "    background: aliceblue;\n" +
+                "}";
+    }
 }

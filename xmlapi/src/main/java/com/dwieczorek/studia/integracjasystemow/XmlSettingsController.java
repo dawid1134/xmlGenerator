@@ -36,7 +36,8 @@ public class XmlSettingsController {
     }
 
     @RequestMapping(value = "/style.css", method = RequestMethod.GET)
+    @ResponseBody
     public String xmlStyle() {
-        return "";
+        return cssStyledGeneratorService.prepareCss();
     }
 }
