@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.nio.charset.Charset;
 
 /**
  * Created by dawid on 01.01.2017.
@@ -26,7 +27,7 @@ public class CssStyledGeneratorService extends ResponseGeneratorService {
     }
 
     private HttpEntity<byte[]> prepareXmlFile(String attribute) {
-        byte[] documentBody = attribute.getBytes();
+        byte[] documentBody = attribute.getBytes(Charset.forName("utf-8"));
         HttpHeaders header = new HttpHeaders();
         header.setContentType(new MediaType("application", "xml"));
         header.setContentLength(documentBody.length);
