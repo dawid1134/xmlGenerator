@@ -1,7 +1,9 @@
 package com.dwieczorek.studia.integracjasystemow;
 
 import com.dwieczorek.studia.integracjasystemow.dao.dto.CustomerData;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.env.Environment;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 
 import javax.xml.bind.JAXBContext;
@@ -13,6 +15,9 @@ import javax.xml.bind.Marshaller;
  */
 @org.springframework.context.annotation.Configuration
 public class Configuration {
+
+    @Autowired
+    private Environment environment;
     @Bean
     public Marshaller createMarshaller() throws JAXBException {
         JAXBContext jc = JAXBContext.newInstance(CustomerData.class);
@@ -22,7 +27,8 @@ public class Configuration {
     @Bean
     public JedisConnectionFactory jedisConnectionFactory() {
         JedisConnectionFactory jedisConFactory = new JedisConnectionFactory();
-        jedisConFactory.setHostName("13.93.87.189");
+        String jedisIp = environment.getProperty("jedis.ipaddress");
+        jedisConFactory.setHostName(jedisIp);
         jedisConFactory.setPort(6379);
         return jedisConFactory;
     }
