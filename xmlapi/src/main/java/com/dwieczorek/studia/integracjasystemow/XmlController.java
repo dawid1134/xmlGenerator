@@ -147,7 +147,7 @@ public class XmlController {
         responseGeneratorService.prepareResponse(request, response, xmlList);
     }
 
-    @RequestMapping(path = "/index", method = RequestMethod.GET)
+    @RequestMapping(path = "/**", method = RequestMethod.GET)
     public String index() {
         return "index";
     }
