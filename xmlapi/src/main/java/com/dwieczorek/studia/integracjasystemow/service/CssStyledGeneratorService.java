@@ -63,14 +63,25 @@ public class CssStyledGeneratorService extends ResponseGeneratorService {
                 "    display: table-row;\n" +
                 "    margin-left: 0;\n" +
                 "    border: blue;\n" +
-                "    border-style: solid;\n" +
                 "    padding: 10px;\n" +
-                "    background: +" + cssSettings.getBackgroundColor() + ";\n" +
+                "    background: " + cssSettings.getBackgroundColor() + ";\n" +
+                "    color: " + cssSettings.getColor() + ";\n" +
+                "    text-align: " + cssSettings.getTextAlign() + "\n;" +
                 "}\n" +
                 "\n" +
                 "id, firstName, lastName, email, gender, ipAddress, appName, bitcoinAddress, city, country, domain, hexColor, phone, time, title{\n" +
                 "    display: table-cell;\n" +
-                "    border: solid 1px;\n" +
-                "}\n";
+                "    border: 1px;\n" +
+                "    border-style: " + cssSettings.getBorderStyle() + ";\n" +
+                "    border-size: " + cssSettings.getBorderSize() + ";\n" +
+                "    border-color: " + cssSettings.getBorderColor() + ";\n" +
+                "    font-size: " + cssSettings.getFontSize() + "px;\n" +
+                "    font-weight: " + cssSettings.getFontWeight() + ";\n" +
+                "}\n" +
+                "\n" +
+                "item:hover {\n" +
+                "    color: " + cssSettings.getHoverColor() + ";\n" +
+                "    background:" + cssSettings.getBackgroundHoverColor() + ";\n" +
+                "}";
     }
 }
