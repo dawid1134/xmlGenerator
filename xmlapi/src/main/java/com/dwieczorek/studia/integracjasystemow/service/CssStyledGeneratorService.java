@@ -4,7 +4,7 @@ import com.dwieczorek.studia.integracjasystemow.converter.ApiParser;
 import com.dwieczorek.studia.integracjasystemow.converter.ServerSupportedType;
 import com.dwieczorek.studia.integracjasystemow.converter.parser.XmlApiParser;
 import com.dwieczorek.studia.integracjasystemow.dao.dto.CustomerData;
-import com.dwieczorek.studia.integracjasystemow.utils.XmlList;
+import com.dwieczorek.studia.integracjasystemow.form.CssSettings;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -22,7 +22,7 @@ import java.util.List;
 public class CssStyledGeneratorService extends ResponseGeneratorService {
     private static final String XMLLIST = "XML_LIST";
 
-    public HttpEntity<byte[]> getResult(HttpServletRequest request, HttpServletResponse response) {
+    public HttpEntity<byte[]> getResult(HttpServletRequest request) {
         String attribute = (String) request.getSession().getAttribute(XMLLIST);
         return prepareXmlFile(attribute);
     }
@@ -53,18 +53,24 @@ public class CssStyledGeneratorService extends ResponseGeneratorService {
         throw new UnsupportedOperationException("CSS Styled generator service support only XML format.");
     }
 
-    public String prepareCss() {
-        return "XmlList {\n" +
+    public String prepareCss(CssSettings cssSettings) {
+        return "ArrayList {\n" +
                 "    background-color: #ffffff;\n" +
                 "    width: 90%;\n" +
+                "    display: table;\n" +
                 "}\n" +
-                "items > items {\n" +
-                "    display: block;\n" +
+                "item {\n" +
+                "    display: table-row;\n" +
                 "    margin-left: 0;\n" +
                 "    border: blue;\n" +
                 "    border-style: solid;\n" +
                 "    padding: 10px;\n" +
-                "    background: aliceblue;\n" +
-                "}";
+                "    background: +" + cssSettings.getBackgroundColor() + ";\n" +
+                "}\n" +
+                "\n" +
+                "id, firstName, lastName, email, gender, ipAddress, appName, bitcoinAddress, city, country, domain, hexColor, phone, time, title{\n" +
+                "    display: table-cell;\n" +
+                "    border: solid 1px;\n" +
+                "}\n";
     }
 }
