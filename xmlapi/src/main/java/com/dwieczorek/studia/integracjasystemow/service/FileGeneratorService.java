@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by wiecz on 03.12.2016.
@@ -23,7 +24,7 @@ public class FileGeneratorService extends ResponseGeneratorService {
 
     @Override
     protected void generateResponse(HttpServletRequest request, HttpServletResponse response,
-                                    ApiParser<XmlList<CustomerData>> apiParser, XmlList<CustomerData> xmlList) {
+                                    ApiParser<List<CustomerData>> apiParser, List<CustomerData> xmlList) {
         response.reset();
         response.setBufferSize(DEFAULT_BUFFER_SIZE);
         setProperMetadata(request, response, apiParser);
@@ -36,8 +37,8 @@ public class FileGeneratorService extends ResponseGeneratorService {
     }
 
     @Override
-    protected ApiParser<XmlList<CustomerData>> createProperParser(ServerSupportedType type) {
-        ApiParser<XmlList<CustomerData>> apiParser;
+    protected ApiParser<List<CustomerData>> createProperParser(ServerSupportedType type) {
+        ApiParser<List<CustomerData>> apiParser;
         switch (type){
             case JSON:
                 apiParser = new JsonApiParser<>();
@@ -58,7 +59,7 @@ public class FileGeneratorService extends ResponseGeneratorService {
     }
 
     private void setProperMetadata(HttpServletRequest request, HttpServletResponse response,
-                                   ApiParser<XmlList<CustomerData>> apiParser) {
+                                   ApiParser<List<CustomerData>> apiParser) {
         response.setContentType(apiParser.getContentType());
         response.addHeader("Content-Disposition", "attachment; filename="+ request.getServletPath()
                 .substring(1,request.getServletPath().length())

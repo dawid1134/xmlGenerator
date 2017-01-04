@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.nio.charset.Charset;
+import java.util.List;
 
 /**
  * Created by dawid on 01.01.2017.
@@ -36,7 +37,7 @@ public class CssStyledGeneratorService extends ResponseGeneratorService {
 
     @Override
     protected void generateResponse(HttpServletRequest request, HttpServletResponse response,
-                                    ApiParser<XmlList<CustomerData>> apiParser, XmlList<CustomerData> xmlList) {
+                                    ApiParser<List<CustomerData>> apiParser, List<CustomerData> xmlList) {
         String result = apiParser.parse(xmlList);
         response.setContentType("text/plain");
         request.getSession().setAttribute(XMLLIST, result);
@@ -45,7 +46,7 @@ public class CssStyledGeneratorService extends ResponseGeneratorService {
     }
 
     @Override
-    protected ApiParser<XmlList<CustomerData>> createProperParser(ServerSupportedType type) {
+    protected ApiParser<List<CustomerData>> createProperParser(ServerSupportedType type) {
         if (type == ServerSupportedType.XML) {
             return new XmlApiParser<>();
         }
@@ -59,7 +60,6 @@ public class CssStyledGeneratorService extends ResponseGeneratorService {
                 "}\n" +
                 "items > items {\n" +
                 "    display: block;\n" +
-                "    /* margin-bottom: 30pt; */\n" +
                 "    margin-left: 0;\n" +
                 "    border: blue;\n" +
                 "    border-style: solid;\n" +

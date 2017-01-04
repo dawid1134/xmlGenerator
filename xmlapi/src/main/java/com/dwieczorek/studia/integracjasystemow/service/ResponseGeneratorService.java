@@ -7,6 +7,7 @@ import com.dwieczorek.studia.integracjasystemow.utils.XmlList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * Created by dawid on 01.01.2017.
@@ -14,16 +15,16 @@ import javax.servlet.http.HttpServletResponse;
 public abstract class ResponseGeneratorService {
     public static final String SESSION_TYPE = "TYPE";
 
-    public void prepareResponse(HttpServletRequest request, HttpServletResponse response, XmlList<CustomerData> xmlList) {
+    public void prepareResponse(HttpServletRequest request, HttpServletResponse response, List<CustomerData> xmlList) {
         ServerSupportedType type = getServerTypeFromRequest(request);
-        ApiParser<XmlList<CustomerData>> apiParser = createProperParser(type);
+        ApiParser<List<CustomerData>> apiParser = createProperParser(type);
         generateResponse(request, response, apiParser, xmlList);
     }
 
     protected abstract void generateResponse(HttpServletRequest request, HttpServletResponse response,
-                                             ApiParser<XmlList<CustomerData>> apiParser, XmlList<CustomerData> xmlList);
+                                             ApiParser<List<CustomerData>> apiParser, List<CustomerData> xmlList);
 
-    protected abstract ApiParser<XmlList<CustomerData>> createProperParser(ServerSupportedType type);
+    protected abstract ApiParser<List<CustomerData>> createProperParser(ServerSupportedType type);
 
     private ServerSupportedType getServerTypeFromRequest(HttpServletRequest request) {
         ServerSupportedType type = (ServerSupportedType) request.getSession().getAttribute(SESSION_TYPE);
