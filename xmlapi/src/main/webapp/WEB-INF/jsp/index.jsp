@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>Title</title>
-    <script src="webjars/jquery/3.1.1/dist/jquery.min.js"></script>
+    <script src="js/jquery-3.1.1.js"></script>
 </head>
 <body>
 <script>
