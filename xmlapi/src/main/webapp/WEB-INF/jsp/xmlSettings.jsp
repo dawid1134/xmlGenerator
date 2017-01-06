@@ -3,7 +3,25 @@
 <html>
 <head>
     <title>Xml Settings</title>
+    <script src="js/jquery-3.1.1.js"></script>
 </head>
+<script>
+    $(document).ready(function () {
+        $('#style').click(function () {
+            var val = $('input[name=style]:checked').val();
+            switch(val){
+                case "style1":
+                    $('#backgroundColor').val('aqua');
+                    break;
+                case "style2":
+                    break;
+                case "style3":
+                    break;
+
+            }
+        })
+    })
+</script>
 <body>
 XmlSettings<br/>
 Style1<input type="radio" name="style" value="style1"/>
