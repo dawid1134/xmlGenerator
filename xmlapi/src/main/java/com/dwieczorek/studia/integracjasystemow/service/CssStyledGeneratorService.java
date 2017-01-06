@@ -60,7 +60,7 @@ public class CssStyledGeneratorService extends ResponseGeneratorService {
                 "    display: table;\n" +
                 "    margin: auto;" +
                 "}\n" +
-                "item {\n" +
+                "headers, item {\n" +
                 "    display: table-row;\n" +
                 "    margin-left: 0;\n" +
                 "    border: blue;\n" +
@@ -70,7 +70,7 @@ public class CssStyledGeneratorService extends ResponseGeneratorService {
                 "    text-align: " + cssSettings.getTextAlign() + "\n;" +
                 "}\n" +
                 "\n" +
-                "id, firstName, lastName, email, gender, ipAddress, appName, bitcoinAddress, city, country, domain, hexColor, phone, time, title{\n" +
+                "header, id, firstName, lastName, email, gender, ipAddress, appName, bitcoinAddress, city, country, domain, hexColor, phone, time, title{\n" +
                 "    display: table-cell;\n" +
                 "    border: 1px;\n" +
                 "    border-style: " + cssSettings.getBorderStyle() + ";\n" +
