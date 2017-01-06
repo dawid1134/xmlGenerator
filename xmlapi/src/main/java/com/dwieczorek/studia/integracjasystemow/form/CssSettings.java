@@ -13,7 +13,7 @@ public class CssSettings implements Serializable {
     private String hoverColor;
     private String backgroundHoverColor;
     private String borderStyle;
-    private String borderSize;
+    private String borderWidth;
     private String textAlign;
     private String fontWeight;
 
@@ -73,12 +73,12 @@ public class CssSettings implements Serializable {
         this.borderStyle = borderStyle;
     }
 
-    public String getBorderSize() {
-        return borderSize;
+    public String getBorderWidth() {
+        return borderWidth;
     }
 
-    public void setBorderSize(String borderSize) {
-        this.borderSize = borderSize;
+    public void setBorderWidth(String borderWidth) {
+        this.borderWidth = borderWidth;
     }
 
     public String getTextAlign() {

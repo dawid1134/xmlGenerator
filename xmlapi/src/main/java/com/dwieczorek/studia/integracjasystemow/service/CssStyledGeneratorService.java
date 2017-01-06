@@ -58,6 +58,7 @@ public class CssStyledGeneratorService extends ResponseGeneratorService {
                 "    background-color: #ffffff;\n" +
                 "    width: 90%;\n" +
                 "    display: table;\n" +
+                "    margin: auto;" +
                 "}\n" +
                 "item {\n" +
                 "    display: table-row;\n" +
@@ -73,7 +74,7 @@ public class CssStyledGeneratorService extends ResponseGeneratorService {
                 "    display: table-cell;\n" +
                 "    border: 1px;\n" +
                 "    border-style: " + cssSettings.getBorderStyle() + ";\n" +
-                "    border-size: " + cssSettings.getBorderSize() + ";\n" +
+                "    border-width: " + cssSettings.getBorderWidth() + "px;\n" +
                 "    border-color: " + cssSettings.getBorderColor() + ";\n" +
                 "    font-size: " + cssSettings.getFontSize() + "px;\n" +
                 "    font-weight: " + cssSettings.getFontWeight() + ";\n" +

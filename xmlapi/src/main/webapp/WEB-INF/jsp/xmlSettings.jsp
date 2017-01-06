@@ -28,7 +28,7 @@ Style3<input type="radio" class="style-radio" name="style" value="style3"/>
         <option value="dashed">Dashed</option>
     </select><br/>
     Border size:
-    <select name="borderSize" id="borderSize">
+    <select name="borderWidth" id="borderWidth">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -83,7 +83,7 @@ Style3<input type="radio" class="style-radio" name="style" value="style3"/>
                     $('#backgroundColor').val('aliceblue');
                     $('#borderColor').val('blue');
                     $('#borderStyle').val('solid');
-                    $('#borderSize').val('1');
+                    $('#borderWidth').val('1');
                     $('#fontSize').val('15');
                     $('#fontWeight').val('normal');
                     $('#textAlign').val('center');
@@ -95,7 +95,7 @@ Style3<input type="radio" class="style-radio" name="style" value="style3"/>
                     $('#backgroundColor').val('aqua');
                     $('#borderColor').val('red');
                     $('#borderStyle').val('dashed');
-                    $('#borderSize').val('3');
+                    $('#borderWidth').val('3');
                     $('#fontSize').val('16');
                     $('#fontWeight').val('bold');
                     $('#textAlign').val('right');
@@ -107,8 +107,8 @@ Style3<input type="radio" class="style-radio" name="style" value="style3"/>
                     $('#backgroundColor').val('coral');
                     $('#borderColor').val('blue');
                     $('#borderStyle').val('solid');
-                    $('#borderSize').val('2');
-                    $('#fontSize').val('18');
+                    $('#borderWidth').val('2');
+                    $('#fontSize').val('16');
                     $('#fontWeight').val('normal');
                     $('#textAlign').val('left');
                     $('#color').val('yellow');
