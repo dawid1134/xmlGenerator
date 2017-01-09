@@ -1,6 +1,7 @@
 package com.dwieczorek.studia.integracjasystemow.converter.parser;
 
 import com.dwieczorek.studia.integracjasystemow.converter.ApiParser;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -18,6 +19,7 @@ public class XmlApiParser<T> implements ApiParser<T> {
     public String parse(T objectToParse) {
         ObjectMapper objectMapper = new XmlMapper();
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         try {
             StringBuilder stringBuffer = new StringBuilder();
             prepareXmlHeader(stringBuffer);
